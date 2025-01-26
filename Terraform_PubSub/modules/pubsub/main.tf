@@ -1,12 +1,12 @@
 resource "google_pubsub_topic" "pubsub_topics" {
-  for_each = toset(var.topics)
+  count = var.topic_count
 
-  name = each.value
+  name = format("topic-%d", count.index + 1)
 }
 
 resource "google_pubsub_subscription" "pubsub_subscriptions" {
-  for_each = var.subscriptions
+  count = var.subscription_count
 
-  name  = each.key
-  topic = google_pubsub_topic.pubsub_topics[each.value].id
+  name  = format("sub-%d", count.index + 1)
+  topic = google_pubsub_topic.pubsub_topics[count.index].id
 }

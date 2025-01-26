@@ -8,12 +8,13 @@ variable "region" {
   type        = string
 }
 
-variable "topics" {
-  description = "List of Pub/Sub topics to be created."
-  type        = list(string)
+variable "topic_count" {
+  description = "The number of Pub/Sub topics to create."
+  type        = number
 }
 
-variable "subscriptions" {
-  description = "Map of subscriptions to topics. Each key is the subscription name, and the value is the topic name."
-  type        = map(string)
+variable "subscription_count" {
+  description = "The number of Pub/Sub subscriptions to create."
+  type        = number
 }
+
